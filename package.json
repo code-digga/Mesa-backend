@@ -1,0 +1,15 @@
+{
+  "name": "mesa-backend",
+  "version": "1.0.0",
+  "description": "This is the backend project for the Mesa App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Code Digga",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "sequelize": "^6.37.3"
+  }
+}
