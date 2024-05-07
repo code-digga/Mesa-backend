@@ -1,7 +1,10 @@
 const express = require("express");
+const { initDb } = require("./config/db.config");
 
 const app = express();
 const PORT = 3001;
+
+initDb();
 
 app.get("/", (req, res) => {
   res.status(200).json({
