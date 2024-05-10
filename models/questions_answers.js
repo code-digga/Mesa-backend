@@ -1,5 +1,6 @@
 const { sequelize } = require("../config/db.config");
 const { DataTypes } = require("sequelize");
+const Exams = require("./exams_tests");
 
 const QA = sequelize.define(
   "QA",
@@ -45,9 +46,17 @@ const QA = sequelize.define(
     exam_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: Exams,
+        key: "id",
+      },
     },
   },
   {
     tableName: "questions_answers",
   }
 );
+
+QA.belongsTo(Exams);
+
+module.exports = QA;

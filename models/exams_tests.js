@@ -1,5 +1,7 @@
 const { sequelize } = require("../config/db.config");
 const { DataTypes } = require("sequelize");
+const Course = require("./courses");
+const Questions = require("./questions_answers");
 
 const ExamsTests = sequelize.define(
   "ExamTests",
@@ -24,3 +26,8 @@ const ExamsTests = sequelize.define(
     tableName: "exam_tests",
   }
 );
+
+ExamsTests.belongsTo(Course);
+ExamsTests.hasMany(Questions, { foreignKey: "exam_id" });
+
+module.exports = ExamsTests;

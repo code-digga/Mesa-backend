@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 require("dotenv").config();
-const crypto = require("node:crypto");
+const { subtle } = require("node:crypto").webcrypto;
 
 const hashPassword = async (password) => {
   const hash = await bcrypt.hash(password, process.env.PWDSALT);
@@ -12,8 +12,8 @@ const confirmPassword = async (inputPassword, storedPassword) => {
   return passwordCorrect;
 };
 
-const generateApiKey = async (email) => {
-  const hashedMail = await bcrypt.hash(email, process.env.PWDSALT);
+const generateApiKey = async (email, password) => {
+  const hashedMail = await bcrypt.hash(email + password, process.env.PWDSALT);
 };
 
 module.exports = {

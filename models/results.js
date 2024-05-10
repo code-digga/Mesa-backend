@@ -1,5 +1,7 @@
 const { sequelize } = require("../config/db.config");
 const { DataTypes } = require("sequelize");
+const Courses = require("./courses");
+const User = require("./user");
 
 const Result = sequelize.define(
   "Result",
@@ -7,10 +9,18 @@ const Result = sequelize.define(
     course_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: Courses,
+        key: "id",
+      },
     },
     student_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: User,
+        key: "id",
+      },
     },
     student_result: {
       type: DataTypes.INTEGER,
@@ -31,3 +41,9 @@ const Result = sequelize.define(
     tableName: "results",
   }
 );
+
+Result.belongsTo(Courses);
+
+Result.belongsTo(User);
+
+module.exports = Result;

@@ -1,12 +1,16 @@
 const { sequelize } = require("../config/db.config");
 const { DataTypes } = require("sequelize");
-
+const Course = require("./courses");
 const Lesson = sequelize.define(
   "Lessons",
   {
     course_id: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: Course,
+        key: "id",
+      },
     },
     link: {
       type: DataTypes.STRING,
@@ -22,3 +26,5 @@ const Lesson = sequelize.define(
   },
   { tableName: "lessons" }
 );
+Lesson.belongsTo(Course);
+module.exports = Lesson;

@@ -21,8 +21,8 @@ const sequelize = new Sequelize(
 const initDb = async () => {
   try {
     await sequelize.authenticate();
+    await sequelize.sync();
   } catch (error) {
-    console.log({ error });
     throw new Error(error.message);
   }
 };

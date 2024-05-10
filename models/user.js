@@ -1,6 +1,9 @@
 const { sequelize } = require("../config/db.config");
 const { DataTypes } = require("sequelize");
 const { hashPassword } = require("../utils/crypto_utils");
+const Courses = require("./courses");
+const UserCoursesModel = require("./users_courses");
+const Result = require("./results");
 
 const User = sequelize.define(
   "User",
@@ -48,4 +51,8 @@ const User = sequelize.define(
   }
 );
 
+User.belongsToMany(Courses, {
+  through: UserCoursesModel,
+});
+User.hasMany(Result, { foreignKey: "student_id" });
 module.exports = User;
