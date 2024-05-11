@@ -23,6 +23,14 @@ const Lesson = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    topic: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    intro: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   { tableName: "lessons" }
 );

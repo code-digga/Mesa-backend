@@ -21,6 +21,10 @@ const ExamsTests = sequelize.define(
         },
       },
     },
+    instructions: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
   },
   {
     tableName: "exam_tests",
