@@ -1,6 +1,6 @@
 const { sequelize } = require("../config/db.config");
 const { DataTypes } = require("sequelize");
-const { hashPassword } = require("../utils/crypto_utils");
+const { hashPassword } = require("../utils/crypto_jwt");
 
 const User = sequelize.define(
   "User",
@@ -22,13 +22,6 @@ const User = sequelize.define(
       allowNull: false,
       set(value) {
         this.setDataValue("password", hashPassword(this.value));
-      },
-    },
-    api_key: {
-      type: DataTypes.STRING(1234),
-      allowNull: false,
-      set(value) {
-        this.setDataValue("api_key");
       },
     },
     user_type: {
