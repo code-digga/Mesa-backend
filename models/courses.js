@@ -1,10 +1,6 @@
-const { DataTypes, Deferrable } = require("sequelize");
+const { DataTypes, Deferrable, Sequelize } = require("sequelize");
 const { sequelize } = require("../config/db.config");
 const User = require("./user");
-const UserCoursesModel = require("./users_courses");
-const Results = require("./results");
-const Lesson = require("./lessons");
-const Exams = require("./exams_tests");
 
 const Course = sequelize.define(
   "Course",
@@ -47,13 +43,5 @@ const Course = sequelize.define(
     tableName: "courses",
   }
 );
-
-Course.belongsToMany(User, { through: UserCoursesModel });
-
-Course.hasMany(Results, { foreignKey: "course_id" });
-
-Course.hasMany(Lesson, { foreignKey: "course_id" });
-
-Course.hasMany(Exams, { foreignKey: "course_id" });
 
 module.exports = Course;

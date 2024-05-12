@@ -5,7 +5,7 @@ const Lesson = sequelize.define(
   "Lessons",
   {
     course_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: Course,
@@ -34,5 +34,5 @@ const Lesson = sequelize.define(
   },
   { tableName: "lessons" }
 );
-Lesson.belongsTo(Course);
+
 module.exports = Lesson;

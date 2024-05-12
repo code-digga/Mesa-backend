@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const { User } = require("../models/models_associations");
 
 const signUp = async (req, res, next) => {
   // making sure no body param is empty

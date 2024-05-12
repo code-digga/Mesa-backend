@@ -57,6 +57,4 @@ const QA = sequelize.define(
   }
 );
 
-QA.belongsTo(Exams);
-
 module.exports = QA;
