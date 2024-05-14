@@ -1,5 +1,6 @@
 const { User } = require("../models/models_associations");
 const { generateToken, confirmPassword } = require("../utils/crypto_jwt");
+const CustomError = require("../utils/error_class");
 
 const signUp = async (req, res, next) => {
   // making sure no body param is empty
@@ -32,27 +33,36 @@ const signUp = async (req, res, next) => {
   }
 };
 
-const signIn = async (req, res) => {
-  const { email, password } = req.body;
+const signIn = async (req, res, next) => {
+  const { email, user_password } = req.body;
 
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ where: { email: email } });
 
     console.log({ user });
 
     if (!user) {
-      throw new Error("Account not found");
+      throw new CustomError(404, "Account not found");
     }
 
-    const passwordConfirmed = await confirmPassword(password, user.password);
+    const passwordConfirmed = await confirmPassword(
+      user_password,
+      user.dataValues.password
+    );
 
     if (!passwordConfirmed) {
-      throw new Error("Password is incorrect");
+      throw new CustomError(401, "Password is incorrect");
     }
 
     const token = generateToken(email, password);
+    const { password, ...others } = user.dataValues;
+    res.status(200).json({
+      success: true,
+      message: "Login successful",
+      data: { token, ...others },
+    });
   } catch (error) {
-    throw Error(error.message);
+    next(error);
   }
 };
 module.exports = {
