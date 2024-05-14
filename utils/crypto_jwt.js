@@ -12,12 +12,10 @@ const hashPassword = (password) => {
   }
 };
 
-const confirmPassword = async (inputPassword, storedPassword) => {
+const confirmPassword = (inputPassword, storedPassword) => {
   try {
-    bcrypt.compare(inputPassword, storedPassword, function (err, result) {
-      if (err) throw new Error(err.message);
-      return result;
-    });
+    const paswordCorrect = bcrypt.compareSync(inputPassword, storedPassword);
+    return paswordCorrect;
   } catch (error) {
     throw Error(error.message);
   }
