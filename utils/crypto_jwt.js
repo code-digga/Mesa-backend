@@ -19,7 +19,7 @@ const confirmPassword = async (inputPassword, storedPassword) => {
       return result;
     });
   } catch (error) {
-    throw new Error(error.message);
+    throw Error(error.message);
   }
 };
 
