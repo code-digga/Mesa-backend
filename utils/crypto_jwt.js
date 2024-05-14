@@ -2,11 +2,10 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-const hashPassword = async (password) => {
-  console.log("======================> recieved password: " + password);
-  console.log("======================> recieved salt: " + process.env.PWDSALT);
+const hashPassword = (password) => {
   try {
-    const hash = await bcrypt.hash(password, process.env.PWDSALT);
+    var hashSalt = bcrypt.genSaltSync(12);
+    const hash = bcrypt.hashSync(password, hashSalt);
     return hash;
   } catch (error) {
     throw new Error(error.message);
@@ -15,8 +14,10 @@ const hashPassword = async (password) => {
 
 const confirmPassword = async (inputPassword, storedPassword) => {
   try {
-    const passwordCorrect = await bcrypt.compare(inputPassword, storedPassword);
-    return passwordCorrect;
+    bcrypt.compare(inputPassword, storedPassword, function (err, result) {
+      if (err) throw new Error(err.message);
+      return result;
+    });
   } catch (error) {
     throw new Error(error.message);
   }
