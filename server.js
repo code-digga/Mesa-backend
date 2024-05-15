@@ -3,7 +3,7 @@ const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const { initDb } = require("./config/db.config");
 const globalErrorHandler = require("./middlewares/global_middlewares/error_handler");
-const authRouter = require("./routes/auth_router");
+const authRouter = require("./routes/auth_route");
 
 const app = express();
 const PORT = 3001;
