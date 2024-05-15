@@ -12,30 +12,27 @@ const Course = sequelize.define(
     course_code: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    course_units: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
-        isAlphanumeric: true,
-      },
-      course_units: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-          isValid(value) {
-            if (value < 1 || value > 6) {
-              throw new Error(
-                "Course units cannot be less than 1 nor greater than 6"
-              );
-            }
-          },
-          teacher_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-              model: User,
-              key: "id",
-              deferrable: Deferrable.INITIALLY_IMMEDIATE,
-            },
-          },
+        isValid(value) {
+          if (value < 1 || value > 6) {
+            throw new Error(
+              "Course units cannot be less than 1 nor greater than 6"
+            );
+          }
         },
+      },
+    },
+    teacher_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: User,
+        key: "id",
+        deferrable: Deferrable.INITIALLY_IMMEDIATE,
       },
     },
   },

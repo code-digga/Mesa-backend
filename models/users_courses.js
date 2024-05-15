@@ -6,18 +6,20 @@ const Courses = require("./courses");
 const UsersCourses = sequelize.define(
   "UsersCourses",
   {
-    user_id: {
+    UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: "user_id",
       references: {
         model: Users,
         key: "id",
         deferrable: Deferrable.INITIALLY_IMMEDIATE,
       },
     },
-    course_id: {
+    CourseId: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: "course_id",
       references: {
         model: Courses,
         key: "id",
