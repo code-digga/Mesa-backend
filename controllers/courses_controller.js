@@ -27,11 +27,9 @@ const registerCourse = async (req, res, next) => {
   const { student_id, course_id } = req.body;
   try {
     const registeredCourse = await UserCoursesModel.create({
-      user_id: Number(student_id),
-      course_id: Number(course_id),
+      UserId: Number(student_id),
+      CourseId: Number(course_id),
     });
-
-    console.log({ registeredCourse });
 
     res.status(201).json({
       success: true,
