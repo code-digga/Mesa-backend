@@ -13,6 +13,11 @@ const RegisterCourseSchema = Joi.object({
   student_id: Joi.string().required(),
 });
 
+const FetchCourseSchema = Joi.object({
+  user_type: Joi.string().required(),
+  user_id: Joi.string().required(),
+  page: Joi.string().required(),
+});
 const validateAddCourse = async (req, res, next) => {
   try {
     const isValid = await AddCourseSchema.validateAsync(req.body);
@@ -33,7 +38,17 @@ const validateRegisterCourse = async (req, res, next) => {
   }
 };
 
+const validateFetchCourse = async (req, res, next) => {
+  try {
+    const isValid = await FetchCourseSchema.validateAsync(req.query);
+    next();
+  } catch (error) {
+    const err = new CustomError(400, error.message);
+    next(err);
+  }
+};
 module.exports = {
   validateAddCourse,
   validateRegisterCourse,
+  validateFetchCourse,
 };

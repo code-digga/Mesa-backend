@@ -10,5 +10,5 @@ router.post(
   middleware.validateRegisterCourse,
   controller.registerCourse
 );
-
+router.get("/", middleware.validateFetchCourse, controller.fetchCourses);
 module.exports = router;
