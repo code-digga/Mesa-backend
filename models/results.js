@@ -25,6 +25,7 @@ const Result = sequelize.define(
     student_result: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
     },
     exam_type: {
       type: DataTypes.STRING,
