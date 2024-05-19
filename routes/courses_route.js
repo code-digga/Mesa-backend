@@ -1,14 +1,28 @@
 const router = require("express").Router();
 const controller = require("../controllers/courses_controller");
 const middleware = require("../middlewares/validators/course_validation");
-const checkToken = require("../middlewares/authentication/auth_middleware");
+const {
+  verifyStudent,
+  verifyTeacher,
+  checkToken,
+} = require("../middlewares/authentication/auth_middleware");
 
-router.use(checkToken);
-router.post("/", middleware.validateAddCourse, controller.addNewCourse);
+router.post(
+  "/",
+  verifyTeacher,
+  middleware.validateAddCourse,
+  controller.addNewCourse
+);
 router.post(
   "/register",
+  verifyStudent,
   middleware.validateRegisterCourse,
   controller.registerCourse
 );
-router.get("/", middleware.validateFetchCourse, controller.fetchCourses);
+router.get(
+  "/",
+  checkToken,
+  middleware.validateFetchCourse,
+  controller.fetchCourses
+);
 module.exports = router;
