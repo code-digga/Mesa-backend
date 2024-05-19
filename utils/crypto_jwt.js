@@ -21,9 +21,9 @@ const confirmPassword = (inputPassword, storedPassword) => {
   }
 };
 
-const generateToken = async (email, password) => {
+const generateToken = async (email, user_type) => {
   try {
-    const token = jwt.sign({ email, password }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ email, user_type }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
 

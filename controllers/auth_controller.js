@@ -13,7 +13,7 @@ const signUp = async (req, res, next) => {
     });
     const { password, ...others } = newUser.dataValues;
 
-    const token = await generateToken(email, user_password);
+    const token = await generateToken(email, user_type);
 
     res.status(201).json({
       success: true,
@@ -45,7 +45,7 @@ const signIn = async (req, res, next) => {
       throw new CustomError(401, "Password is incorrect");
     }
 
-    const token = await generateToken(email, user_password);
+    const token = await generateToken(email, user.dataValues.user_type);
     const { password, ...others } = user.dataValues;
     res.status(200).json({
       success: true,
