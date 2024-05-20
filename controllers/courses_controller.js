@@ -28,16 +28,21 @@ const addNewCourse = async (req, res, next) => {
 
 const registerCourse = async (req, res, next) => {
   const { student_id, course_id } = req.body;
+  const courseArray = course_id.split(",");
+  let response = [];
   try {
-    const registeredCourse = await UserCoursesModel.create({
-      UserId: Number(student_id),
-      CourseId: Number(course_id),
-    });
+    for (const id of courseArray) {
+      const result = await UserCoursesModel.create({
+        UserId: Number(student_id),
+        CourseId: Number(id),
+      });
+      response.push(result.dataValues);
+    }
 
     res.status(201).json({
       success: true,
-      message: "Course registered successfully",
-      data: registeredCourse.dataValues,
+      message: "Courses registered successfully",
+      data: response,
     });
   } catch (error) {
     const err = new CustomError(500, error.message);
