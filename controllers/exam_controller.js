@@ -24,7 +24,7 @@ const fetchExams = async (req, res, next) => {
 const fetchQuestions = async (req, res, next) => {
   const { id } = req.query;
   try {
-    const questions = QA.findAll({
+    const questions = await QA.findAll({
       where: {
         exam_id: id,
       },
