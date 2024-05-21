@@ -24,6 +24,18 @@ const fetchExams = async (req, res, next) => {
 const fetchQuestions = async (req, res, next) => {
   const { id } = req.query;
   try {
+    const questions = QA.findAll({
+      where: {
+        exam_id: id,
+      },
+      raw: true,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: "Questions fetched successfully",
+      data: questions,
+    });
   } catch (error) {
     const err = new CustomError(500, error.message);
     next(err);

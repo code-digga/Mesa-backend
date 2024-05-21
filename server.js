@@ -19,6 +19,7 @@ app.use(BASE_ROUTE + "auth", authRouter);
 app.use(BASE_ROUTE + "courses", courseRouter);
 app.use(BASE_ROUTE + "results", resultsRouter);
 app.use(BASE_ROUTE + "exams", examsRouter);
+app.use(BASE_ROUTE + "leesons", examsRouter);
 
 app.use(globalErrorHandler);
 app.listen(PORT, () => {
