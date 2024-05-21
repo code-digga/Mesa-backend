@@ -1,5 +1,11 @@
 const cloudinary = require("cloudinary").v2;
+require("dotenv").config();
 
+cloudinary.config({
+  api_key: process.env.CLOUDINARY_KEY,
+  cloud_name: process.env.CLOUD_NAME,
+  api_secret: process.env.API_SECRET,
+});
 const uploadFile = (courseCode, lessonFile) => {
   try {
     const resp = cloudinary.uploader.upload(lessonFile, {
