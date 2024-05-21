@@ -1,7 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
-const { initDb } = require("./config/db.config");
+const { initDb } = require("./config/db_config");
 const globalErrorHandler = require("./middlewares/global_middlewares/error_handler");
 const authRouter = require("./routes/auth_route");
 const courseRouter = require("./routes/courses_route");

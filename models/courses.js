@@ -1,5 +1,5 @@
 const { DataTypes, Deferrable, Sequelize } = require("sequelize");
-const { sequelize } = require("../config/db.config");
+const { sequelize } = require("../config/db_config");
 const User = require("./user");
 
 const Course = sequelize.define(
