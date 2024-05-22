@@ -17,3 +17,5 @@ router.post(
   fileLoader,
   controller.addLesson
 );
+
+module.exports = router;

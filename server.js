@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth_route");
 const courseRouter = require("./routes/courses_route");
 const resultsRouter = require("./routes/results_route");
 const examsRouter = require("./routes/exams_route");
+const lessonsRouter = require("./routes/lesson_route");
 
 const app = express();
 const PORT = 3001;
@@ -19,7 +20,7 @@ app.use(BASE_ROUTE + "auth", authRouter);
 app.use(BASE_ROUTE + "courses", courseRouter);
 app.use(BASE_ROUTE + "results", resultsRouter);
 app.use(BASE_ROUTE + "exams", examsRouter);
-app.use(BASE_ROUTE + "leesons", examsRouter);
+app.use(BASE_ROUTE + "lessons", lessonsRouter);
 
 app.use(globalErrorHandler);
 app.listen(PORT, () => {
